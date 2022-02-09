@@ -56,15 +56,15 @@ class App extends Component {
 
       <div>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="#home">
+      <Navbar.Brand href="/home">
         Dice Roller
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/home">Home</Nav.Link>
-          <Nav.Link href="/Statisztika">Features</Nav.Link>
-          <Nav.Link href="/Forum">Pricing</Nav.Link>
+          {/*<Nav.Link href="/home">Home</Nav.Link>*/}
+          <Nav.Link href="/Statisztika">Staisztika</Nav.Link>
+          <Nav.Link href="/Forum">Komment</Nav.Link>
           {/*ADMIN--------------------------------------------------------------------------------------*/}
           {showModeratorBoard && (
           <NavDropdown title="Dropdown" id="collasible-nav-dropdown">

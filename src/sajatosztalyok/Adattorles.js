@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, TextInput, View,TouchableOpacity,FlatList,ActivityIndicato,ScrollView,StyleSheet,SafeAreaView } from 'react-native-web';
 
 
-const ipcim="localhost:8080";
+const ipcim="https://siralycore.hu:8084";
 export default class Bevitel extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +15,7 @@ export default class Bevitel extends Component {
   }
 
   frissit =()=>{
-    return fetch('http://'+ipcim+'/ertekeles_uzenet')
+    return fetch(ipcim+'/ertekeles_uzenet')
     .then((response) => response.json())
     .then((responseJson) => {
   
@@ -25,7 +25,7 @@ export default class Bevitel extends Component {
       }, function(){
   
       });
-      alert(JSON.stringify(this.state.dataSource))
+      //alert(JSON.stringify(this.state.dataSource))
       //split
   
     })
@@ -37,18 +37,24 @@ export default class Bevitel extends Component {
    }
     kereses=async ()=>{
         let bemenet2={
-            bevitel2: this.state.ertekeles_uzenet,
+            bevitel1: this.state.ertekeles_uzenet
           }
-        fetch('http://'+ipcim+'/kereses', {
+        fetch(ipcim+'/kereses', {
       method: "POST",
       body: JSON.stringify(bemenet2),
       headers: {"Content-type": "application/json; charset=UTF-8"}
       } )
-      .then((response) => response.text())
-      .then((szoveg) => {
+      .then((response) => response.json())
+      .then((eredmeny) => {
 
-        alert(szoveg)
-        this.frissit()
+        //alert(eredmeny)
+
+        this.setState({
+          isLoading: false,
+          dataSource: eredmeny,
+        }, function(){
+    
+        });
       })
       .catch((error) =>{
         console.error(error);
@@ -59,14 +65,14 @@ export default class Bevitel extends Component {
 
     
   felvitel=async ()=>{
-    alert("Megnyomva")
+    //alert("Megnyomva")
     let bemenet={
       bevitel1: this.state.ertekeles_id,
     }
     
 
  
-    fetch('http://'+ipcim+'/admin_torles', {
+    fetch(ipcim+'/admin_torles', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -74,14 +80,14 @@ export default class Bevitel extends Component {
       .then((response) => response.text())
       .then((szoveg) => {
 
-        alert(szoveg)
+        //alert(szoveg)
         this.frissit()
       })
       .catch((error) =>{
         console.error(error);
       });
 
-    fetch('http://'+ipcim+'/ertekeles', {
+    fetch(ipcim+'/ertekeles', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -89,7 +95,7 @@ export default class Bevitel extends Component {
       .then((response) => response.text())
       .then((szoveg) => {
 
-        alert(szoveg)
+        //alert(szoveg)
         this.frissit()
       })
       .catch((error) =>{
@@ -117,9 +123,9 @@ export default class Bevitel extends Component {
         <TextInput
         placeholderTextColor="#b3b3ff"
           style={{height: 40,color:"white"}}
-          placeholder="Add meg a Komment id-t!"
+          placeholder="Add meg a Kulcsszót!"
           onChangeText={(ertekeles_uzenet) => this.setState({ertekeles_uzenet})}
-          /*value={this.state.ertekeles_uzenet}*/
+          value={this.state.ertekeles_uzenet}
         />
         <TouchableOpacity 
         onPress={async ()=>this.kereses()}>
@@ -146,7 +152,7 @@ export default class Bevitel extends Component {
         <TouchableOpacity 
         onPress={async ()=>this.felvitel()}>
           <View style={{width:200,backgroundColor:"#b3b3ff",marginTop:10}}>
-            <Text style={{textAlign:"center",padding:10}}>Felvitel</Text>
+            <Text style={{textAlign:"center",padding:10}}>Törlés</Text>
           </View>
         </TouchableOpacity>
        

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View,TouchableOpacity,FlatList,ActivityIndicator,ScrollView,StyleSheet,SafeAreaView } from 'react-native-web';
 
-const ipcim="localhost:8080";
+const ipcim="https://s1.siralycore.hu:8084";
 export default class Bevitel extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +16,7 @@ export default class Bevitel extends Component {
 
   
  frissit =()=>{
-  return fetch('http://'+ipcim+'/ertekeles_uzenet')
+  return fetch(ipcim+'/ertekeles_uzenet')
   .then((response) => response.json())
   .then((responseJson) => {
 
@@ -44,7 +44,7 @@ export default class Bevitel extends Component {
       bevitel2: this.state.ertekeles_uzenet,
     }
  
-    fetch('http://'+ipcim+'/ertekeles', {
+    fetch(ipcim+'/ertekeles', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
