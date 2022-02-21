@@ -189,6 +189,9 @@ export default class FetchExample extends React.Component {
             <View style={{width: 150, height: 50, backgroundColor: 'steelblue'}} >
               <Text style={{color:"brown",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}>{item.statisztika_date.split ("T")[0].trim()}</Text>
             </View>
+            <View style={{width: 150, height: 50, backgroundColor: 'steelblue'}} >
+              <Text style={{color:"brown",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}>{item.statisztika_level_id}</Text>
+            </View>
 
           </View>
         }
