@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, View,TouchableOpacity,FlatList,ActivityIndicator,ScrollView,StyleSheet,SafeAreaView } from 'react-native-web';
+import { Text, TextInput, View,TouchableOpacity,FlatList,ActivityIndicator,ScrollView,StyleSheet,SafeAreaView,Button } from 'react-native-web';
 
 
 const ipcim="http://172.16.0.23:8080";
@@ -35,73 +35,27 @@ export default class Bevitel extends Component {
   
   
    }
-    kereses=async ()=>{
-        let bemenet2={
-            bevitel1: this.state.ertekeles_uzenet
-          }
-        fetch(ipcim+'/kereses', {
-      method: "POST",
-      body: JSON.stringify(bemenet2),
-      headers: {"Content-type": "application/json; charset=UTF-8"}
-      } )
-      .then((response) => response.json())
-      .then((eredmeny) => {
-
-        alert(eredmeny)
-
-        this.setState({
-          isLoading: false,
-          dataSource: eredmeny,
-        }, function(){
+    Torles=()=>{
+        alert("hello")
+        return fetch(ipcim+'/admin_torles_egyszeru')
+        .then((response) => response.json())
+        .then((responseJson) => {
     
-        });
-      })
-      .catch((error) =>{
-        console.error(error);
-      });
-
-    }
-
-
+          this.setState({
+            isLoading: false,
+            dataSource: responseJson,
+          }, function(){
     
-  felvitel=async ()=>{
-    alert("Megnyomva")
-    let bemenet={
-      bevitel1: this.state.ertekeles_id,
-    }
+          });
+          alert(JSON.stringify(this.state.dataSource))
+          //split
     
-
- 
-    fetch(ipcim+'/admin_torles', {
-      method: "POST",
-      body: JSON.stringify(bemenet),
-      headers: {"Content-type": "application/json; charset=UTF-8"}
-      } )
-      .then((response) => response.text())
-      .then((szoveg) => {
-
-        alert(szoveg)
-        this.frissit()
-      })
-      .catch((error) =>{
-        console.error(error);
-      });
-
-      fetch(ipcim+'/ertekeles', {
-        method: "POST",
-        body: JSON.stringify(bemenet),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
-        } )
-        .then((response) => response.text())
-        .then((szoveg) => {
-  
-          alert(szoveg)
-          this.frissit()
         })
         .catch((error) =>{
           console.error(error);
         });
-    }
+        
+      }
   
   componentDidMount(){
     this.frissit()
@@ -133,27 +87,6 @@ export default class Bevitel extends Component {
         </TouchableOpacity>
        
       </View>
-
-
-
-      <View style={{width:350,padding: 10,backgroundColor:"grey",alignItems:"center",borderRadius:20,marginLeft:20,marginRight:20}}>
-         <Text style={{padding: 10, fontSize: 20,color:"white"}}>
-         Törlés komment id:
-        </Text>
-        <TextInput
-        placeholderTextColor="#b3b3ff"
-          style={{height: 40,color:"white"}}
-          placeholder="Add meg a Komment id-t!"
-          onChangeText={(ertekeles_id) => this.setState({ertekeles_id})}
-        />
-        <TouchableOpacity 
-        onPress={async ()=>this.felvitel()}>
-          <View style={{width:200,backgroundColor:"#b3b3ff",marginTop:10}}>
-            <Text style={{textAlign:"center",padding:10}}>Törlés</Text>
-          </View>
-        </TouchableOpacity>
-       
-      </View>
 {/*Megjelenítés-------------------------------------------------------------------------------------------------------------------------*/}
 <View style={styles.list}>
         <FlatList
@@ -164,6 +97,7 @@ export default class Bevitel extends Component {
             <Text style={{fontSize:20,padding:3,color:"white"}}>{item.ertekeles_uzenet} </Text>
             <Text style={{fontStyle:"italic",fontSize:15,padding:3}}>{item.ertekeles_nev} </Text>
             <Text style={{fontStyle:"italic",fontSize:15,padding:3}}>{item.ertekeles_id} </Text>
+            <Button onPress={() => this.Torles()} title="Törlés" />
             <Text style={{fontSize:12}}>{item.ertekeles_date.split ("T")[0].trim()} </Text>
           </View>
           

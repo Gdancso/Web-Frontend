@@ -17,8 +17,11 @@ import BoardModerator from "./components/board-moderator.component";
 import BoardAdmin from "./components/board-admin.component";
 import Proba from "./sajatosztalyok/Proba";
 import Statisztika from "./sajatosztalyok/Statisztika";
+import Osszes from "./sajatosztalyok/Osszes";
 import Forum from "./sajatosztalyok/Forum";
 import Adattorles from "./sajatosztalyok/Adattorles";
+import Delete from "./sajatosztalyok/Delete";
+
 
 
 class App extends Component {
@@ -64,14 +67,14 @@ class App extends Component {
         <Nav className="mr-auto">
           {/*<Nav.Link href="/home">Home</Nav.Link>*/}
           <Nav.Link href="/Statisztika">Staisztika</Nav.Link>
+          <Nav.Link href="/Osszes">Staisztika2</Nav.Link>
           <Nav.Link href="/Forum">Komment</Nav.Link>
+          <Nav.Link href="/Proba">Proba</Nav.Link>
           {/*ADMIN--------------------------------------------------------------------------------------*/}
-          {showModeratorBoard && (
+          {showAdminBoard && (
           <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
             <NavDropdown.Item href="/mod">Moderator</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
+            <NavDropdown.Item href="/Delete">Delete egyszerű</NavDropdown.Item>
             <NavDropdown.Item href="/Adattorles">Adattorles</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.4">
@@ -113,101 +116,6 @@ class App extends Component {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-{/*---RÉGI---------------------------------------------------------------------------------------------------------------------------*/}
-        {/*
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
-
-          <Link to={"/"} className="navbar-brand">
-            bezKoder
-          </Link>
-          <div className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
-                Home
-              </Link>
-            </li>
-
-            <li className="nav-item">
-              <Link to={"/Statisztika"} className="nav-link">
-                Statisztika
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/Forum"} className="nav-link">
-                Forum
-              </Link>
-            </li>
-
-            {showModeratorBoard && (
-              <li className="nav-item">
-                <Link to={"/mod"} className="nav-link">
-                  Moderator Board
-                </Link>
-              </li>
-            )}
-
-            {showAdminBoard && (
-              <li className="nav-item">
-                <Link to={"/admin"} className="nav-link">
-                  Admin Lap
-                </Link>
-              </li>
-            )}
-            {showAdminBoard && (
-              <li className="nav-item">
-                <Link to={"/Adattorles"} className="nav-link">
-                  Adat Törlés értekeles
-                </Link>
-              </li>
-            )}
-
-            {showAdminBoard && (
-              <li className="nav-item">
-                <Link to={"/Proba"} className="nav-link">
-                  Proba
-                </Link>
-              </li>
-            )}
-
-            {currentUser && (
-              <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User
-                </Link>
-              </li>
-            )}
-          </div>
-
-          {currentUser ? (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={"/profile"} className="nav-link">
-                  {currentUser.username}
-                </Link>
-              </li>
-              <li className="nav-item">
-                <a href="/login" className="nav-link" onClick={this.logOut}>
-                  LogOut
-                </a>
-              </li>
-            </div>
-          ) : (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={"/login"} className="nav-link">
-                  Login
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
-                </Link>
-              </li>
-            </div>
-          )}
-        </nav>
-          */}
 
 
         <div className="container mt-3">
@@ -221,8 +129,10 @@ class App extends Component {
             <Route path="/admin" component={BoardAdmin} />
             <Route path="/Proba" component={Proba} />
             <Route path="/Statisztika" component={Statisztika} />
+            <Route path="/Osszes" component={Osszes} />
             <Route path="/Forum" component={Forum} />
             <Route path="/Adattorles" component={Adattorles} />
+            <Route path="/Delete" component={Delete} />
           </Switch>
         </div>
       </div>
