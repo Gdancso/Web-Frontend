@@ -3,7 +3,7 @@ import MaterialButtonDark from "../components/MaterialButtonDark";
 import {StyleSheet, FlatList, ActivityIndicator, Text, View, Image , TouchableOpacity, Button,SafeAreaView,StatusBar } from 'react-native-web';
 
 
-const ipcim="http://172.16.0.23:8080";
+const ipcim="http://192.168.2.106:8080";
 export default class FetchExample extends React.Component {
 
 
@@ -33,9 +33,9 @@ export default class FetchExample extends React.Component {
     });
   }
 
-  rendezes_halal=()=>{
+  rendezes_osszes_pont=()=>{
     alert("hello")
-    return fetch(ipcim+'/rend_halal')
+    return fetch(ipcim+'/rend_osszes_pont')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -54,30 +54,9 @@ export default class FetchExample extends React.Component {
     });
   }
 
-  rendezes_ido=()=>{
+  rendezes_nev=()=>{
     alert("hello")
-    return fetch(ipcim+'/rend_ido')
-    .then((response) => response.json())
-    .then((responseJson) => {
-
-      this.setState({
-        isLoading: false,
-        dataSource: responseJson,
-      }, function(){
-
-      });
-      alert(JSON.stringify(this.state.dataSource))
-      //split
-
-    })
-    .catch((error) =>{
-      console.error(error);
-    });
-  }
-
-  rendezes_date=()=>{
-    alert("hello")
-    return fetch(ipcim+'/rend_date')
+    return fetch(ipcim+'/rend_nev')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -134,7 +113,7 @@ export default class FetchExample extends React.Component {
         console.error(error);
       });
   }
-  
+
   render(){
 
     if(this.state.isLoading){
@@ -147,19 +126,29 @@ export default class FetchExample extends React.Component {
     return(
       <View style={{flex: 1, paddingTop:20}}>
         <View style={styles.container}>
-         <View style={styles.button} >
-            <Button onPress={() => this.rendezes_pont()} title="Rendezés pont" />
+         <View style={styles.kekgomb} >
+            <Button onPress={() => this.rendezes_nev()} title="Rendezés Név" />
           </View>
-          <View style={styles.button} >
-            <Button onPress={() => this.rendezes_halal()} title="Rendezés halal" />
+          <View style={styles.kekgomb} >
+            <Button onPress={() => this.rendezes_osszes_pont()} title="Rendezés pont" />
           </View>
-          <View style={styles.button} >
+          <View style={styles.kekgomb} >
             <Button onPress={() => this.rendezes_ido()} title="Rendezés ido" />
           </View>
-          <View style={styles.button} >
-            <Button onPress={() => this.rendezes_date()} title="Rendezés date" />
-          </View>
         </View>
+
+        <View style={styles.container}>
+            <View style={styles.head} >
+              <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Név</Text>
+            </View>
+            <View style={styles.head} >
+              <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Pontszám</Text>
+            </View>
+            <View style={styles.head} >
+              <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Elért Pálya</Text>
+            </View>
+          </View>
+
         <FlatList
           data={this.state.dataSource}
           renderItem={({item}) => 
@@ -203,17 +192,15 @@ const styles = StyleSheet.create({
 
   kekgomb: {
     alignItems: "center",
-    backgroundColor: "blue",
-    padding: 10,
-    width:300,
-    marginLeft:"auto",
-    marginRight:"auto",
+    padding: 5,
+    width:200,
   },
   button: {
     backgroundColor: "oldlace",
     marginHorizontal: "1%",
     marginBottom: 6,
-    minWidth: "40%"
+    minWidth: "40%",
+    alignSelf:"center"
   },
   row: {
     flexDirection: "row",
@@ -225,5 +212,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 15,
     marginBottom:5
+  },
+  head: {
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,1)",
+    backgroundColor: "rgba(2,2,2,1)",
+    width: 304,
+    height: 46
   }
 });

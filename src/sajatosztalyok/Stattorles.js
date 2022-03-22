@@ -12,7 +12,7 @@ export default class FetchExample extends React.Component {
   }
 
   rendezes_pont=()=>{
-    alert("hello")
+    //alert("hello")
     return fetch(ipcim+'/rend_pont')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -23,7 +23,7 @@ export default class FetchExample extends React.Component {
       }, function(){
 
       });
-      alert(JSON.stringify(this.state.dataSource))
+      //alert(JSON.stringify(this.state.dataSource))
       //split
 
     })
@@ -33,7 +33,7 @@ export default class FetchExample extends React.Component {
   }
 
   rendezes_halal=()=>{
-    alert("hello")
+    //alert("hello")
     return fetch(ipcim+'/rend_halal')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -44,7 +44,7 @@ export default class FetchExample extends React.Component {
       }, function(){
 
       });
-      alert(JSON.stringify(this.state.dataSource))
+      //alert(JSON.stringify(this.state.dataSource))
       //split
 
     })
@@ -54,7 +54,7 @@ export default class FetchExample extends React.Component {
   }
 
   rendezes_ido=()=>{
-    alert("hello")
+    //alert("hello")
     return fetch(ipcim+'/rend_ido')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -65,7 +65,7 @@ export default class FetchExample extends React.Component {
       }, function(){
 
       });
-      alert(JSON.stringify(this.state.dataSource))
+      //alert(JSON.stringify(this.state.dataSource))
       //split
 
     })
@@ -75,7 +75,7 @@ export default class FetchExample extends React.Component {
   }
 
   rendezes_date=()=>{
-    alert("hello")
+    //alert("hello")
     return fetch(ipcim+'/rend_date')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -86,7 +86,7 @@ export default class FetchExample extends React.Component {
       }, function(){
 
       });
-      alert(JSON.stringify(this.state.dataSource))
+      //alert(JSON.stringify(this.state.dataSource))
       //split
 
     })
@@ -96,7 +96,50 @@ export default class FetchExample extends React.Component {
   }
 
 
+  Torles=(id)=>{
+    //alert("hello")
+    var bemenet={
+      bevitel1:id
+     
+    }
+  
+    fetch(ipcim+'/admin_torles_egyszeru', {
+      method: "POST",
+      body: JSON.stringify(bemenet),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+    }
+  
+  )
+  .then(x => x.text())
+  .then(y => {
+    //alert(y)
+    this.frissit()
+  });
+    
+    
+}
+Torles=(id)=>{
+  //alert("hello")
+  var bemenet={
+    bevitel1:id
+   
+  }
 
+  fetch(ipcim+'/admin_torles_statisztika', {
+    method: "POST",
+    body: JSON.stringify(bemenet),
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+  }
+
+)
+.then(x => x.text())
+.then(y => {
+ // alert(y)
+  this.frissit()
+});
+  
+  
+}
   szavazat=(szam)=>{
     //alert(szam)
     var bemenet={
@@ -115,8 +158,9 @@ export default class FetchExample extends React.Component {
 
   }
 
+  
 
-  componentDidMount(){
+  frissit =()=>{
     return fetch(ipcim+'/statisztika')
       .then((response) => response.json())
       .then((responseJson) => {
@@ -127,7 +171,7 @@ export default class FetchExample extends React.Component {
         }, function(){
 
         });
-        alert(JSON.stringify(this.state.dataSource))
+        //alert(JSON.stringify(this.state.dataSource))
         //split
         //let T = this.state.dataSource
         /*for (let index = 0; index < T.length; index++) {
@@ -141,7 +185,9 @@ export default class FetchExample extends React.Component {
         console.error(error);
       });
   }
-
+  componentDidMount(){
+    this.frissit()
+  }
 
 
   render(){
@@ -159,21 +205,21 @@ export default class FetchExample extends React.Component {
     return(
       
       <View style={{flex: 1, paddingTop:20}}>
-        <View style={styles.containerbutton}>
-            <View style={styles.button} >
+        <View style={styles.container}>
+            <View style={styles.kekgomb} >
               <Button onPress={() => this.rendezes_pont()} title="Rendezés pont" />
             </View>
-            <View style={styles.button} >
+            <View style={styles.kekgomb} >
               <Button onPress={() => this.rendezes_halal()} title="Rendezés halal" />
             </View>
-            <View style={styles.button} >
+            <View style={styles.kekgomb} >
             <Button onPress={() => this.rendezes_ido()} title="Rendezés ido" />   
             </View>
-            <View style={styles.button} >
+            <View style={styles.kekgomb} >
               <Button onPress={() => this.rendezes_date()} title="Rendezés date" />
             </View>
+        </View> 
 
-          </View>
           <View style={styles.container}>
             <View style={styles.head} >
               <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Név</Text>
@@ -192,6 +238,8 @@ export default class FetchExample extends React.Component {
             </View>
             <View style={styles.head} >
               <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Elért Pálya</Text>
+            </View>
+            <View style={styles.head} >
             </View>
           </View> 
         <FlatList
@@ -212,18 +260,17 @@ export default class FetchExample extends React.Component {
               <Text style={styles.Text}>{item.statisztika_ido}</Text>
             </View>
             <View style={styles.rect} >
+              <Text style={styles.Text}>{item.statisztika_level_id}</Text>
+            </View>
+            <View style={styles.rect} >
               <Text style={styles.Text}>{item.statisztika_date.split ("T")[0].trim()}</Text>
             </View>
             <View style={styles.rect} >
-              <Text style={styles.Text}>{item.statisztika_level_id}</Text>
+              <Button style={styles.gomb} onPress={() => this.Torles(item.statisztika_id)} title="Törlés" />
             </View>
-
           </View>
         }
 
-        
-
-        
           keyExtractor={({statisztika_id}, index) => statisztika_id}
         />
       </View>
@@ -239,11 +286,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "stretch",
     alignSelf: "center",
-    flexDirection: 'row'
+    flexDirection: 'row',
+
   },
   containerbutton: {
-    flex: 1,
-    alignSelf: "center",
     flexDirection: 'row'
   },
   rect: {
@@ -253,18 +299,22 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#000000"
   },
+  rect2: {
+    width: 150,
+    height: 50,
+    backgroundColor: "rgba(2,2,2,0.75)",
+    borderWidth: 1,
+    borderColor: "#000000",
+    marginTop:5
+  },
 
   kekgomb: {
     alignItems: "center",
     padding: 5,
     width:200,
   },
-  button: {
-    backgroundColor: "oldlace",
-    marginHorizontal: "1%",
-    marginBottom: 6,
-    minWidth: "40%",
-    alignSelf:"center"
+  gomb: {
+    marginTop:5
   },
   row: {
     flexDirection: "row",

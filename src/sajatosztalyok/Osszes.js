@@ -1,8 +1,9 @@
 import React from 'react';
+import MaterialButtonDark from "../components/MaterialButtonDark";
 import {StyleSheet, FlatList, ActivityIndicator, Text, View, Image , TouchableOpacity, Button,SafeAreaView,StatusBar } from 'react-native-web';
 
 
-const ipcim="http://172.16.0.23:8080";
+const ipcim="http://192.168.2.106:8080";
 export default class FetchExample extends React.Component {
 
 
@@ -11,9 +12,9 @@ export default class FetchExample extends React.Component {
     this.state ={ isLoading: true, dataSource:[]}
   }
 
-  rendezes_pont=()=>{
+  rendezes_nev=()=>{
     alert("hello")
-    return fetch(ipcim+'/rend_pont')
+    return fetch(ipcim+'/rend_nev')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -32,9 +33,9 @@ export default class FetchExample extends React.Component {
     });
   }
 
-  rendezes_halal=()=>{
+  rendezes_p=()=>{
     alert("hello")
-    return fetch(ipcim+'/rend_halal')
+    return fetch(ipcim+'/rend_osszes_pontszam')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -53,30 +54,9 @@ export default class FetchExample extends React.Component {
     });
   }
 
-  rendezes_ido=()=>{
+  rendezes_palya=()=>{
     alert("hello")
-    return fetch(ipcim+'/rend_ido')
-    .then((response) => response.json())
-    .then((responseJson) => {
-
-      this.setState({
-        isLoading: false,
-        dataSource: responseJson,
-      }, function(){
-
-      });
-      alert(JSON.stringify(this.state.dataSource))
-      //split
-
-    })
-    .catch((error) =>{
-      console.error(error);
-    });
-  }
-
-  rendezes_date=()=>{
-    alert("hello")
-    return fetch(ipcim+'/rend_date')
+    return fetch(ipcim+'/rend_elert')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -134,11 +114,7 @@ export default class FetchExample extends React.Component {
       });
   }
 
-
-
   render(){
-
-    
 
     if(this.state.isLoading){
       return(
@@ -147,41 +123,48 @@ export default class FetchExample extends React.Component {
         </View>
       )
     }
-
     return(
       <View style={{flex: 1, paddingTop:20}}>
-        <View style={{flex: 1, flexDirection: 'column'}}>
-            <View style={styles.button} >
-              <Button onPress={() => this.rendezes_pont()} title="Rendezés pont" />
-              <Button onPress={() => this.rendezes_halal()} title="Rendezés halal" />
-              <Button onPress={() => this.rendezes_ido()} title="Rendezés ido" />
-              <Button onPress={() => this.rendezes_date()} title="Rendezés date" />
-              
-
-            </View>
-
+        <View style={styles.container}>
+         <View style={styles.kekgomb} >
+            <Button onPress={() => this.rendezes_nev()} title="Rendezés Név" />
           </View>
+          <View style={styles.kekgomb} >
+            <Button onPress={() => this.rendezes_p()} title="Rendezés pont" />
+          </View>
+          <View style={styles.kekgomb} >
+            <Button onPress={() => this.rendezes_palya()} title="Rendezés palya" />
+          </View>
+        </View>
+
+        <View style={styles.container}>
+            <View style={styles.head} >
+              <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Név</Text>
+            </View>
+            <View style={styles.head} >
+              <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Pontszám</Text>
+            </View>
+            <View style={styles.head} >
+              <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Elért Pálya</Text>
+            </View>
+          </View>
+
         <FlatList
           data={this.state.dataSource}
           renderItem={({item}) => 
           
-          <View style={{flex: 1, flexDirection: 'row'}}>
-             <View style={{width: 80, height: 50, backgroundColor: 'steelblue'}} >
-              <Text style={{color:"brown",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}>{item.statisztika_nev}</Text>
-            </View>
-            <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} >
-            <Text style={{color:"brown",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}>{item.osszes_pont}</Text>
-            </View>
-            <View style={{width: 150, height: 50, backgroundColor: 'skyblue'}} >
-              <Text style={{color:"brown",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}>{item.elert}</Text>
-            </View>
-
+          <View style={styles.container}>
+            <View style={styles.rect}>
+              <Text style={styles.Text}>{item.statisztika_nev}</Text>
+              </View>
+            <View style={styles.rect}>
+              <Text style={styles.Text}>{item.osszes_pont}</Text>
+              </View>
+            <View style={styles.rect}>
+              <Text style={styles.Text}>{item.elert}</Text>
+              </View>
           </View>
-        }
-
-        
-
-        
+          }
           keyExtractor={({statisztika_id}, index) => statisztika_id}
         />
       </View>
@@ -190,29 +173,51 @@ export default class FetchExample extends React.Component {
 }
 
 const styles = StyleSheet.create({
+
+
   
+  container: {
+    flex: 1,
+    alignItems: "stretch",
+    alignSelf: "center",
+    flexDirection: 'row'
+  },
+  rect: {
+    width: 304,
+    height: 50,
+    backgroundColor: "rgba(2,2,2,0.75)",
+    borderWidth: 1,
+    borderColor: "#000000"
+  },
+
   kekgomb: {
     alignItems: "center",
-    backgroundColor: "blue",
-    padding: 10,
-    width:300,
-    marginLeft:"auto",
-    marginRight:"auto",
+    padding: 5,
+    width:200,
   },
   button: {
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    borderRadius: 4,
     backgroundColor: "oldlace",
-    alignSelf: "flex-start",
     marginHorizontal: "1%",
     marginBottom: 6,
-    minWidth: "48%",
-    textAlign: "center",
-    alignSelf:"center",
+    minWidth: "40%",
+    alignSelf:"center"
   },
   row: {
     flexDirection: "row",
     flexWrap: "wrap",
   },
+  Text:{
+    textAlign:"center",
+    color:"white",
+    fontSize: 20,
+    marginTop: 15,
+    marginBottom:5
+  },
+  head: {
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,1)",
+    backgroundColor: "rgba(2,2,2,1)",
+    width: 304,
+    height: 46
+  }
 });

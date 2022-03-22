@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View,TouchableOpacity,FlatList,ActivityIndicator,ScrollView,StyleSheet,SafeAreaView } from 'react-native-web';
 
-const ipcim="http://192.168.2.106:8080";
+const ipcim="http://172.16.0.23:8080";
 export default class Bevitel extends Component {
   constructor(props) {
     super(props);
@@ -101,23 +101,6 @@ export default class Bevitel extends Component {
        
       </View>
 {/*Megjelenítés-------------------------------------------------------------------------------------------------------------------------*/}
-      
-      <View style={styles.list}>
-        <FlatList
-
-          data={this.state.dataSource}
-          renderItem={({item}) => 
-          <View style={{borderWidth:1,borderRadius:10,padding:10,width:300,marginLeft:13,paddingLeft:15,backgroundColor:"lightblue"}}>
-            <Text style={{fontSize:20,padding:3,color:"white"}}>{item.ertekeles_uzenet} </Text>
-            <Text style={{fontStyle:"italic",fontSize:15,padding:3}}>{item.ertekeles_nev} </Text>
-            <Text style={{fontSize:12}}>{item.ertekeles_date.split ("T")[0].trim()} </Text>
-          </View>
-          
-        }
-          keyExtractor={({ertekeles_id}, index) => ertekeles_id}
-        />
-      </View>
-      
       </View>
       </ScrollView>
       </SafeAreaView>

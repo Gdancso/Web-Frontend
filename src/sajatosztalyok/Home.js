@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Iframe from 'react-iframe'
 import { Text, TextInput, View,TouchableOpacity,FlatList,ActivityIndicator,ScrollView,StyleSheet,SafeAreaView } from 'react-native-web';
 
-const ipcim="http://172.16.0.23:8080";
+const ipcim="http://192.168.2.106:8080";
 export default class Bevitel extends Component {
   constructor(props) {
     super(props);
@@ -21,8 +21,8 @@ export default class Bevitel extends Component {
     return (
 
         
-      <View style={styles.scrollView}>
-      <Iframe url="https://www.youtube.com/watch?v=9wwNDEADqVE"
+      <View style={styles.container}>
+      <Iframe url="https://www.youtube.com/embed/3MxRciSmvuo"
         width="900px"
         height="450px"
         id="myId"
@@ -35,8 +35,10 @@ export default class Bevitel extends Component {
   }
 }
 const styles = StyleSheet.create({
-  scrollView: {
-    alignItem:'center',
-
-  }
+  container: {
+    flex: 1,
+    alignItems: "stretch",
+    alignSelf: "center",
+    flexDirection: 'row'
+  },
 });

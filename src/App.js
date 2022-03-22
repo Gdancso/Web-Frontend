@@ -21,6 +21,9 @@ import Osszes from "./sajatosztalyok/Osszes";
 import Forum from "./sajatosztalyok/Forum";
 import Adattorles from "./sajatosztalyok/Adattorles";
 import Delete from "./sajatosztalyok/Delete";
+import Stattorles from "./sajatosztalyok/Stattorles";
+import HirekBe from "./sajatosztalyok/HirekBe";
+import Hirek from "./sajatosztalyok/Hirek";
 
 
 
@@ -67,15 +70,18 @@ class App extends Component {
         <Nav className="mr-auto">
           {/*<Nav.Link href="/home">Home</Nav.Link>*/}
           <Nav.Link href="/Statisztika">Staisztika</Nav.Link>
-          <Nav.Link href="/Osszes">Staisztika2</Nav.Link>
+          <Nav.Link href="/Osszes">Staisztika öszzesített</Nav.Link>
           <Nav.Link href="/Forum">Komment</Nav.Link>
+          <Nav.Link href="/Hirek">Hírek</Nav.Link>
           <Nav.Link href="/Proba">Proba</Nav.Link>
           {/*ADMIN--------------------------------------------------------------------------------------*/}
           {showAdminBoard && (
-          <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+          <NavDropdown title="Admin" id="collasible-nav-dropdown">
             <NavDropdown.Item href="/mod">Moderator</NavDropdown.Item>
             <NavDropdown.Item href="/Delete">Delete egyszerű</NavDropdown.Item>
-            <NavDropdown.Item href="/Adattorles">Adattorles</NavDropdown.Item>
+            <NavDropdown.Item href="/Adattorles">Adattörlés</NavDropdown.Item>
+            <NavDropdown.Item href="/Stattorles">Statisztika törlés</NavDropdown.Item>
+            <NavDropdown.Item href="/HirekBe">Hírek írása</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.4">
               Separated link
@@ -133,6 +139,9 @@ class App extends Component {
             <Route path="/Forum" component={Forum} />
             <Route path="/Adattorles" component={Adattorles} />
             <Route path="/Delete" component={Delete} />
+            <Route path="/Stattorles" component={Stattorles} />
+            <Route path="/HirekBe" component={HirekBe} />
+            <Route path="/Hirek" component={Hirek} />
           </Switch>
         </div>
       </div>

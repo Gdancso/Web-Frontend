@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, TextInput, View,TouchableOpacity,FlatList,ActivityIndicator,ScrollView,StyleSheet,SafeAreaView } from 'react-native-web';
 
 
-const ipcim="http://172.16.0.23:8080";
+const ipcim="http://192.168.2.106:8080";
 export default class Bevitel extends Component {
   constructor(props) {
     super(props);

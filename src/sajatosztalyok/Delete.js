@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, TextInput, View,TouchableOpacity,FlatList,ActivityIndicator,ScrollView,StyleSheet,SafeAreaView,Button } from 'react-native-web';
 
 
-const ipcim="http://172.16.0.23:8080";
+const ipcim="http://192.168.2.106:8080";
 export default class Bevitel extends Component {
   constructor(props) {
     super(props);
@@ -35,27 +35,28 @@ export default class Bevitel extends Component {
   
   
    }
-    Torles=()=>{
+    Torles=(id)=>{
         alert("hello")
-        return fetch(ipcim+'/admin_torles_egyszeru')
-        .then((response) => response.json())
-        .then((responseJson) => {
-    
-          this.setState({
-            isLoading: false,
-            dataSource: responseJson,
-          }, function(){
-    
-          });
-          alert(JSON.stringify(this.state.dataSource))
-          //split
-    
-        })
-        .catch((error) =>{
-          console.error(error);
-        });
+        var bemenet={
+          bevitel1:id
+         
+        }
+      
+        fetch(ipcim+'/admin_torles_egyszeru', {
+          method: "POST",
+          body: JSON.stringify(bemenet),
+          headers: {"Content-type": "application/json; charset=UTF-8"}
+        }
+      
+      )
+      .then(x => x.text())
+      .then(y => {
+        alert(y)
+        this.frissit()
+      });
         
-      }
+        
+    }
   
   componentDidMount(){
     this.frissit()
@@ -97,7 +98,7 @@ export default class Bevitel extends Component {
             <Text style={{fontSize:20,padding:3,color:"white"}}>{item.ertekeles_uzenet} </Text>
             <Text style={{fontStyle:"italic",fontSize:15,padding:3}}>{item.ertekeles_nev} </Text>
             <Text style={{fontStyle:"italic",fontSize:15,padding:3}}>{item.ertekeles_id} </Text>
-            <Button onPress={() => this.Torles()} title="Törlés" />
+            <Button onPress={() => this.Torles(item.ertekeles_id)} title="Törlés" />
             <Text style={{fontSize:12}}>{item.ertekeles_date.split ("T")[0].trim()} </Text>
           </View>
           
