@@ -73,7 +73,7 @@ class App extends Component {
           <Nav.Link href="/Osszes">Staisztika öszzesített</Nav.Link>
           <Nav.Link href="/Forum">Komment</Nav.Link>
           <Nav.Link href="/Hirek">Hírek</Nav.Link>
-          <Nav.Link href="/Proba">Proba</Nav.Link>
+          {/*<Nav.Link href="/Proba">Proba</Nav.Link>*/}
           {/*ADMIN--------------------------------------------------------------------------------------*/}
           {showAdminBoard && (
           <NavDropdown title="Admin" id="collasible-nav-dropdown">

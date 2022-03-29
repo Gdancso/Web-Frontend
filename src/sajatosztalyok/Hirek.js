@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View,TouchableOpacity,FlatList,ActivityIndicator,ScrollView,StyleSheet,SafeAreaView } from 'react-native';
+const IP = require('./ipcim.js');
 
 
-const ipcim="http://172.16.0.23:8080"
+
+//const ipcim="http://172.16.0.23:8080"
 export default class Bevitel extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +19,7 @@ export default class Bevitel extends Component {
 
   
  frissit =()=>{
-  return fetch(ipcim+'/hirek_szoveg')
+  return fetch(IP.ipcim+'/hirek_szoveg')
   .then((response) => response.json())
   .then((responseJson) => {
 

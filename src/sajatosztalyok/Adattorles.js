@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View,TouchableOpacity,FlatList,ActivityIndicator,ScrollView,StyleSheet,SafeAreaView } from 'react-native-web';
+const IP = require('./ipcim.js');
 
 
-const ipcim="http://192.168.2.106:8080";
+//const ipcim="http://192.168.2.106:8080";
 export default class Bevitel extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +16,7 @@ export default class Bevitel extends Component {
   }
 
   frissit =()=>{
-    return fetch(ipcim+'/ertekeles_uzenet')
+    return fetch(IP.ipcim+'/ertekeles_uzenet')
     .then((response) => response.json())
     .then((responseJson) => {
   
@@ -39,7 +40,7 @@ export default class Bevitel extends Component {
         let bemenet2={
             bevitel1: this.state.ertekeles_uzenet
           }
-        fetch(ipcim+'/kereses', {
+        fetch(IP.ipcim+'/kereses', {
       method: "POST",
       body: JSON.stringify(bemenet2),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -72,7 +73,7 @@ export default class Bevitel extends Component {
     
 
  
-    fetch(ipcim+'/admin_torles', {
+    fetch(IP.ipcim+'/admin_torles', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -87,7 +88,7 @@ export default class Bevitel extends Component {
         console.error(error);
       });
 
-      fetch(ipcim+'/ertekeles', {
+      fetch(IP.ipcim+'/ertekeles', {
         method: "POST",
         body: JSON.stringify(bemenet),
         headers: {"Content-type": "application/json; charset=UTF-8"}

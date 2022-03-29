@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View,TouchableOpacity,FlatList,ActivityIndicator,ScrollView,StyleSheet,SafeAreaView } from 'react-native-web';
+const IP = require('./ipcim.js');
 
-const ipcim="http://172.16.0.23:8080";
+
+//const ipcim="http://172.16.0.23:8080";
 export default class Bevitel extends Component {
   constructor(props) {
     super(props);
     this.state ={ isLoading: true, dataSource2:[]}
     this.state = {
 
-        ertekeles_nev: '',
-        ertekeles_uzenet:"",
+        hirek_cim: '',
+        hirek_szoveg:"",
 
     };
   }
 
   
   frissit =()=>{
-    return fetch(ipcim+'/ertekeles_uzenet')
+    return fetch(IP.ipcim+'/hirek_szoveg')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -40,11 +42,11 @@ export default class Bevitel extends Component {
   felvitel=async ()=>{
     alert("Megnyomva")
     let bemenet={
-      bevitel1: this.state.ertekeles_nev,
-      bevitel2: this.state.ertekeles_uzenet,
+      bevitel1: this.state.hirek_cim,
+      bevitel2: this.state.hirek_szoveg,
     }
  
-    fetch(ipcim+'/ertekeles', {
+    fetch(IP.ipcim+'/Hirek_fel', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -72,25 +74,28 @@ export default class Bevitel extends Component {
       <View style={{alignItems:'center'}}>
       <View style={{padding: 10,backgroundColor:"blue",alignItems:"center",borderRadius:20,marginLeft:20,marginRight:20}}>
          <Text style={{padding: 10, fontSize: 20,color:"white"}}>
-         Név:
+         Cím:
         </Text>
         <TextInput
         placeholderTextColor="#b3b3ff"
           style={{height: 40,color:"white"}}
-          placeholder="Add meg a nevedet!"
-          onChangeText={(ertekeles_nev) => this.setState({ertekeles_nev})}
-          value={this.state.ertekeles_nev}
+          placeholder="Add meg a Címet"
+          onChangeText={(hirek_cim) => this.setState({hirek_cim})}
+          value={this.state.hirek_cim}
         />
          <Text style={{padding: 10, fontSize: 20,color:"white"}}>
-         Komment:
+          szöveg
         </Text>
         <TextInput
+         multiline
+         numberOfLines={30}
          placeholderTextColor="#b3b3ff"
           style={{height: 40,color:"white",backgroundColor:"#0000b3",padding:10,borderRadius:10,height:80,textAlignVertical:"top"}}
-          placeholder="Add meg a kommentet!"
-          onChangeText={(ertekeles_uzenet) => this.setState({ertekeles_uzenet})}
-          value={this.state.ertekeles_uzenet}
+          placeholder=""
+          onChangeText={(hirek_szoveg) => this.setState({hirek_szoveg})}
+          value={this.state.hirek_szoveg}
         />
+        
 
         <TouchableOpacity 
         onPress={async ()=>this.felvitel()}>

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Iframe from 'react-iframe'
 import { Text, TextInput, View,TouchableOpacity,FlatList,ActivityIndicator,ScrollView,StyleSheet,SafeAreaView } from 'react-native-web';
+const IP = require('./ipcim.js');
 
-const ipcim="http://192.168.2.106:8080";
+
+//const ipcim="http://192.168.2.106:8080";
 export default class Bevitel extends Component {
   constructor(props) {
     super(props);

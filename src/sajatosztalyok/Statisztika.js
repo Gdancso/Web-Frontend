@@ -1,8 +1,10 @@
 import React from 'react';
 import {StyleSheet, FlatList, ActivityIndicator, Text, View, Image , TouchableOpacity, Button,SafeAreaView,StatusBar } from 'react-native-web';
+const IP = require('./ipcim.js');
 
 
-const ipcim="http://192.168.2.106:8080";
+
+//const ipcim="http://192.168.2.106:8080";
 export default class FetchExample extends React.Component {
 
 
@@ -13,7 +15,7 @@ export default class FetchExample extends React.Component {
 
   rendezes_pont=()=>{
     alert("hello")
-    return fetch(ipcim+'/rend_pont')
+    return fetch(IP.ipcim+'/rend_pont')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -34,7 +36,7 @@ export default class FetchExample extends React.Component {
 
   rendezes_halal=()=>{
     alert("hello")
-    return fetch(ipcim+'/rend_halal')
+    return fetch(IP.ipcim+'/rend_halal')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -55,7 +57,7 @@ export default class FetchExample extends React.Component {
 
   rendezes_ido=()=>{
     alert("hello")
-    return fetch(ipcim+'/rend_ido')
+    return fetch(IP.ipcim+'/rend_ido')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -76,7 +78,7 @@ export default class FetchExample extends React.Component {
 
   rendezes_date=()=>{
     alert("hello")
-    return fetch(ipcim+'/rend_date')
+    return fetch(IP.ipcim+'/rend_date')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -103,7 +105,7 @@ export default class FetchExample extends React.Component {
       bevitel1:szam
     }
 
-  fetch(ipcim+'/statisztika', {
+  fetch(IP.ipcim+'/statisztika', {
       method: "POST",
       body: JSON.stringify,
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -117,7 +119,7 @@ export default class FetchExample extends React.Component {
 
 
   componentDidMount(){
-    return fetch(ipcim+'/statisztika')
+    return fetch(IP.ipcim+'/statisztika')
       .then((response) => response.json())
       .then((responseJson) => {
 

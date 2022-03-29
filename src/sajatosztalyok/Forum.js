@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View,TouchableOpacity,FlatList,ActivityIndicator,ScrollView,StyleSheet,SafeAreaView } from 'react-native-web';
+const IP = require('./ipcim.js');
 
-const ipcim="http://192.168.2.106:8080";
+
+//const ipcim="http://192.168.2.106:8080";
 export default class Bevitel extends Component {
   constructor(props) {
     super(props);
     this.state ={ isLoading: true, dataSource2:[]}
     this.state = {
 
-        ertekeles_nev: '',
+        ertekeles_nev: 'anonymous',
         ertekeles_uzenet:"",
 
     };
@@ -16,7 +18,7 @@ export default class Bevitel extends Component {
 
   
   frissit =()=>{
-    return fetch(ipcim+'/ertekeles_uzenet')
+    return fetch(IP.ipcim+'/ertekeles_uzenet')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -44,7 +46,7 @@ export default class Bevitel extends Component {
       bevitel2: this.state.ertekeles_uzenet,
     }
  
-    fetch(ipcim+'/ertekeles', {
+    fetch(IP.ipcim+'/ertekeles', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -66,6 +68,7 @@ export default class Bevitel extends Component {
 
 
   render() {
+    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
     return (
       <SafeAreaView>
       <ScrollView style={styles.scrollView}>
@@ -80,6 +83,7 @@ export default class Bevitel extends Component {
           placeholder="Add meg a nevedet!"
           onChangeText={(ertekeles_nev) => this.setState({ertekeles_nev})}
           value={this.state.ertekeles_nev}
+          //value={currentUser.username}
         />
          <Text style={{padding: 10, fontSize: 20,color:"white"}}>
          Komment:

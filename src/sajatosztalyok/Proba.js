@@ -1,9 +1,11 @@
 import React from 'react';
 import MaterialButtonDark from "../components/MaterialButtonDark";
 import {StyleSheet, FlatList, ActivityIndicator, Text, View, Image , TouchableOpacity, Button,SafeAreaView,StatusBar } from 'react-native-web';
+const IP = require('./ipcim.js');
 
 
-const ipcim="http://192.168.2.106:8080";
+
+//const ipcim="http://192.168.2.106:8080";
 export default class FetchExample extends React.Component {
 
 
@@ -14,7 +16,7 @@ export default class FetchExample extends React.Component {
 
   rendezes_pont=()=>{
     alert("hello")
-    return fetch(ipcim+'/rend_pont')
+    return fetch(IP.ipcim+'/rend_pont')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -35,7 +37,7 @@ export default class FetchExample extends React.Component {
 
   rendezes_osszes_pont=()=>{
     alert("hello")
-    return fetch(ipcim+'/rend_osszes_pont')
+    return fetch(IP.ipcim+'/rend_osszes_pont')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -56,7 +58,7 @@ export default class FetchExample extends React.Component {
 
   rendezes_nev=()=>{
     alert("hello")
-    return fetch(ipcim+'/rend_nev')
+    return fetch(IP.ipcim+'/rend_nev')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -83,7 +85,7 @@ export default class FetchExample extends React.Component {
       bevitel1:szam
     }
 
-  fetch(ipcim+'/groupby', {
+  fetch(IP.ipcim+'/groupby', {
       method: "POST",
       body: JSON.stringify,
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -97,7 +99,7 @@ export default class FetchExample extends React.Component {
 
 
   componentDidMount(){
-    return fetch(ipcim+'/groupby')
+    return fetch(IP.ipcim+'/groupby')
       .then((response) => response.json())
       .then((responseJson) => {
 
