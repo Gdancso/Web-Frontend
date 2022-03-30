@@ -70,16 +70,15 @@ export default class Bevitel extends Component {
   render() {
     const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
     return (
-      <SafeAreaView>
-      <ScrollView style={styles.scrollView}>
-      <View style={{alignItems:'center'}}>
-      <View style={{padding: 10,backgroundColor:"blue",alignItems:"center",borderRadius:20,marginLeft:20,marginRight:20}}>
+      
+      <View>
+      <View style={{padding: 10,marginVertical:15,backgroundColor:"#484a4d",alignItems:"center",alignSelf:"center",width:500,borderRadius:20,marginLeft:20,marginRight:20}}>
          <Text style={{padding: 10, fontSize: 20,color:"white"}}>
          Név:
         </Text>
         <TextInput
-        placeholderTextColor="#b3b3ff"
-          style={{height: 40,color:"white"}}
+          placeholderTextColor="#b3b3ff"
+          style={{height: 40,color:"white",backgroundColor:"#585959",padding:10,borderRadius:10,height:40,textAlignVertical:"top"}}
           placeholder="Add meg a nevedet!"
           onChangeText={(ertekeles_nev) => this.setState({ertekeles_nev})}
           value={this.state.ertekeles_nev}
@@ -89,8 +88,8 @@ export default class Bevitel extends Component {
          Komment:
         </Text>
         <TextInput
-         placeholderTextColor="#b3b3ff"
-          style={{height: 40,color:"white",backgroundColor:"#0000b3",padding:10,borderRadius:10,height:80,textAlignVertical:"top"}}
+         placeholderTextColor="white"
+          style={{height: 40,color:"white",backgroundColor:"#585959",padding:10,borderRadius:10,height:80,textAlignVertical:"top"}}
           placeholder="Add meg a kommentet!"
           onChangeText={(ertekeles_uzenet) => this.setState({ertekeles_uzenet})}
           value={this.state.ertekeles_uzenet}
@@ -98,33 +97,29 @@ export default class Bevitel extends Component {
 
         <TouchableOpacity 
         onPress={async ()=>this.felvitel()}>
-          <View style={{width:200,backgroundColor:"#b3b3ff",marginTop:10}}>
-            <Text style={{textAlign:"center",padding:10}}>Felvitel</Text>
+          <View style={{width:200,backgroundColor:"#585959",borderRadius:10,height:40,marginVertical:15}}>
+            <Text style={{textAlign:"center",padding:10, color:"white",fontSize:"bold"}}>Felvitel</Text>
           </View>
         </TouchableOpacity>
        
       </View>
 {/*Megjelenítés-------------------------------------------------------------------------------------------------------------------------*/}
-      
-      <View style={styles.list}>
+      <View>
         <FlatList
 
           data={this.state.dataSource}
           renderItem={({item}) => 
-          <View style={{borderWidth:1,borderRadius:10,padding:10,width:300,marginLeft:13,paddingLeft:15,backgroundColor:"lightblue"}}>
-            <Text style={{fontSize:20,padding:3,color:"white"}}>{item.ertekeles_uzenet} </Text>
-            <Text style={{fontStyle:"italic",fontSize:15,padding:3}}>{item.ertekeles_nev} </Text>
-            <Text style={{fontSize:12}}>{item.ertekeles_date.split ("T")[0].trim()} </Text>
+          <View style={{borderWidth:1,marginVertical:5,borderRadius:10,padding:10,width:500,alignSelf:'center',backgroundColor:"#677180"}}>
+            <Text style={{fontSize:25,padding:3,color:"white"}}>{item.ertekeles_uzenet} </Text>
+            <Text style={{fontStyle:"italic",fontSize:20,padding:3}}>{item.ertekeles_nev} </Text>
+            <Text style={{fontSize:15}}>{item.ertekeles_date.split ("T")[0].trim()} </Text>
           </View>
           
         }
           keyExtractor={({ertekeles_id}, index) => ertekeles_id}
         />
       </View>
-      
       </View>
-      </ScrollView>
-      </SafeAreaView>
       
     );
   }
@@ -134,10 +129,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 30,
     marginVertical:30,
     flexDirection:"row",
-    flexWrap:"wrap"
-  },
-  list:{
-    alignItems:'center',
-    
+    flexWrap:"wrap",
+    alignSelf: "center",
   },
 });

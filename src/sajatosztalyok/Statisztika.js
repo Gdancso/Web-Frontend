@@ -184,16 +184,16 @@ export default class FetchExample extends React.Component {
               <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Pontszám</Text>
             </View>
             <View style={styles.head} >
-              <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Elért Pálya</Text>
+              <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Halálok</Text>
+            </View>
+            <View style={styles.head} >
+              <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Idő</Text>
             </View>
             <View style={styles.head} >
               <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Elért Pálya</Text>
             </View>
             <View style={styles.head} >
-              <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Elért Pálya</Text>
-            </View>
-            <View style={styles.head} >
-              <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Elért Pálya</Text>
+              <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}></Text>
             </View>
           </View> 
         <FlatList
@@ -214,12 +214,11 @@ export default class FetchExample extends React.Component {
               <Text style={styles.Text}>{item.statisztika_ido}</Text>
             </View>
             <View style={styles.rect} >
-              <Text style={styles.Text}>{item.statisztika_date.split ("T")[0].trim()}</Text>
-            </View>
-            <View style={styles.rect} >
               <Text style={styles.Text}>{item.statisztika_level_id}</Text>
             </View>
-
+            <View style={styles.rect} >
+              <Text style={styles.Text}>{item.statisztika_date.split ("T")[0].trim()}</Text>
+            </View>
           </View>
         }
 
