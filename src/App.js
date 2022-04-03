@@ -77,15 +77,14 @@ class App extends Component {
           {/*ADMIN--------------------------------------------------------------------------------------*/}
           {showAdminBoard && (
           <NavDropdown title="Admin" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="/mod">Moderator</NavDropdown.Item>
-            <NavDropdown.Item href="/Delete">Delete egyszerű</NavDropdown.Item>
-            <NavDropdown.Item href="/Adattorles">Adattörlés</NavDropdown.Item>
+            {/*<NavDropdown.Item href="/mod">Moderator</NavDropdown.Item>*/}
+            <NavDropdown.Item href="/Delete">komment törlés(Kulcsszó)</NavDropdown.Item>
+            <NavDropdown.Item href="/Adattorles">komment törlés(ID)</NavDropdown.Item>
             <NavDropdown.Item href="/Stattorles">Statisztika törlés</NavDropdown.Item>
             <NavDropdown.Item href="/HirekBe">Hírek írása</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
+            {/*<NavDropdown.Item href="#action/3.4">
               Separated link
-            </NavDropdown.Item>
+          </NavDropdown.Item>*/}
           </NavDropdown>
           )}
           {/*-----------------------------------------------------------------------------------------------*/}

@@ -14,7 +14,7 @@ export default class FetchExample extends React.Component {
   }
 
   rendezes_pont=()=>{
-    alert("hello")
+    //alert("hello")
     return fetch(IP.ipcim+'/rend_pont')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -25,7 +25,7 @@ export default class FetchExample extends React.Component {
       }, function(){
 
       });
-      alert(JSON.stringify(this.state.dataSource))
+      //alert(JSON.stringify(this.state.dataSource))
       //split
 
     })
@@ -35,7 +35,7 @@ export default class FetchExample extends React.Component {
   }
 
   rendezes_halal=()=>{
-    alert("hello")
+    //alert("hello")
     return fetch(IP.ipcim+'/rend_halal')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -46,7 +46,7 @@ export default class FetchExample extends React.Component {
       }, function(){
 
       });
-      alert(JSON.stringify(this.state.dataSource))
+      //alert(JSON.stringify(this.state.dataSource))
       //split
 
     })
@@ -56,7 +56,7 @@ export default class FetchExample extends React.Component {
   }
 
   rendezes_ido=()=>{
-    alert("hello")
+    //alert("hello")
     return fetch(IP.ipcim+'/rend_ido')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -67,7 +67,7 @@ export default class FetchExample extends React.Component {
       }, function(){
 
       });
-      alert(JSON.stringify(this.state.dataSource))
+      //alert(JSON.stringify(this.state.dataSource))
       //split
 
     })
@@ -77,7 +77,7 @@ export default class FetchExample extends React.Component {
   }
 
   rendezes_date=()=>{
-    alert("hello")
+    //alert("hello")
     return fetch(IP.ipcim+'/rend_date')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -88,7 +88,7 @@ export default class FetchExample extends React.Component {
       }, function(){
 
       });
-      alert(JSON.stringify(this.state.dataSource))
+      //alert(JSON.stringify(this.state.dataSource))
       //split
 
     })
@@ -129,7 +129,7 @@ export default class FetchExample extends React.Component {
         }, function(){
 
         });
-        alert(JSON.stringify(this.state.dataSource))
+        //alert(JSON.stringify(this.state.dataSource))
         //split
         //let T = this.state.dataSource
         /*for (let index = 0; index < T.length; index++) {
@@ -193,7 +193,7 @@ export default class FetchExample extends React.Component {
               <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Elért Pálya</Text>
             </View>
             <View style={styles.head} >
-              <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}></Text>
+              <Text style={{color:"white",fontSize:25,textAlign:"center",marginTop:5,marginBottom:5}}>Dátum</Text>
             </View>
           </View> 
         <FlatList
@@ -237,13 +237,11 @@ const styles = StyleSheet.create({
 
   
   container: {
-    flex: 1,
     alignItems: "stretch",
     alignSelf: "center",
     flexDirection: 'row'
   },
   containerbutton: {
-    flex: 1,
     alignSelf: "center",
     flexDirection: 'row'
   },
@@ -255,17 +253,10 @@ const styles = StyleSheet.create({
     borderColor: "#000000"
   },
 
-  kekgomb: {
-    alignItems: "center",
-    padding: 5,
-    width:200,
-  },
   button: {
-    backgroundColor: "oldlace",
-    marginHorizontal: "1%",
-    marginBottom: 6,
-    minWidth: "40%",
-    alignSelf:"center"
+    alignItems: "center",
+    padding: 10,
+    width:200,
   },
   row: {
     flexDirection: "row",

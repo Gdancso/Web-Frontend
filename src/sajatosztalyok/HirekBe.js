@@ -28,7 +28,7 @@ export default class Bevitel extends Component {
       }, function(){
 
     });
-    alert(JSON.stringify(this.state.dataSource))
+    //alert(JSON.stringify(this.state.dataSource))
     //split
 
   })
@@ -40,7 +40,7 @@ export default class Bevitel extends Component {
  }
 
   felvitel=async ()=>{
-    alert("Megnyomva")
+    //alert("Megnyomva")
     let bemenet={
       bevitel1: this.state.hirek_cim,
       bevitel2: this.state.hirek_szoveg,
@@ -54,7 +54,7 @@ export default class Bevitel extends Component {
       .then((response) => response.text())
       .then((szoveg) => {
 
-        alert(szoveg)
+        //alert(szoveg)
         this.frissit()
       })
       .catch((error) =>{
@@ -69,16 +69,14 @@ export default class Bevitel extends Component {
 
   render() {
     return (
-      <SafeAreaView>
-      <ScrollView style={styles.scrollView}>
       <View style={{alignItems:'center'}}>
-      <View style={{padding: 10,backgroundColor:"blue",alignItems:"center",borderRadius:20,marginLeft:20,marginRight:20}}>
+      <View style={{padding: 10,marginVertical:15,backgroundColor:"#484a4d",alignItems:"center",alignSelf:"center",width:500,borderRadius:20,marginLeft:20,marginRight:20}}>
          <Text style={{padding: 10, fontSize: 20,color:"white"}}>
          Cím:
         </Text>
         <TextInput
         placeholderTextColor="#b3b3ff"
-          style={{height: 40,color:"white"}}
+        style={{height: 40,color:"white",backgroundColor:"#585959",padding:10,borderRadius:10,textAlignVertical:"top"}}
           placeholder="Add meg a Címet"
           onChangeText={(hirek_cim) => this.setState({hirek_cim})}
           value={this.state.hirek_cim}
@@ -90,7 +88,7 @@ export default class Bevitel extends Component {
          multiline
          numberOfLines={30}
          placeholderTextColor="#b3b3ff"
-          style={{height: 40,color:"white",backgroundColor:"#0000b3",padding:10,borderRadius:10,height:80,textAlignVertical:"top"}}
+          style={{height: 80,color:"white",backgroundColor:"#585959",padding:5,width:160,borderRadius:10,textAlignVertical:"top"}}
           placeholder=""
           onChangeText={(hirek_szoveg) => this.setState({hirek_szoveg})}
           value={this.state.hirek_szoveg}
@@ -107,8 +105,6 @@ export default class Bevitel extends Component {
       </View>
 {/*Megjelenítés-------------------------------------------------------------------------------------------------------------------------*/}
       </View>
-      </ScrollView>
-      </SafeAreaView>
       
     );
   }

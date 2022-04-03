@@ -29,7 +29,7 @@ export default class Bevitel extends Component {
     }, function(){
 
     });
-    alert(JSON.stringify(this.state.dataSource))
+    //alert(JSON.stringify(this.state.dataSource))
     //split
 
   })
@@ -46,8 +46,6 @@ export default class Bevitel extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
       <View style={{alignItems:'center'}}>
 {/*Megjelenítés-------------------------------------------------------------------------------------------------------------------------*/}
       
@@ -56,10 +54,10 @@ export default class Bevitel extends Component {
 
           data={this.state.dataSource}
           renderItem={({item}) => 
-          <View style={{borderWidth:1,borderRadius:10,padding:10,width:300,marginLeft:13,paddingLeft:15,backgroundColor:"lightblue"}}>
-            <Text style={{fontSize:20,padding:3,color:"Black"}}>{item.hirek_cim} </Text>
-            <Text style={{fontStyle:"italic",fontSize:15,padding:3}}>{item.hirek_szoveg} </Text>
-            <Text style={{fontSize:12}}>{item.hirek_datum.split ("T")[0].trim()} </Text>
+          <View style={{borderWidth:1,marginVertical:5,borderRadius:10,padding:10,width:500,alignSelf:'center',backgroundColor:"#677180"}}>
+            <Text style={{fontSize:20,padding:3,color:"white"}}>{item.hirek_cim} </Text>
+            <Text style={{fontStyle:"italic",fontSize:15,padding:3,color:"white"}}>{item.hirek_szoveg} </Text>
+            <Text style={{fontSize:12,color:"white"}}>{item.hirek_datum.split ("T")[0].trim()} </Text>
           </View>
           
         }
@@ -68,8 +66,6 @@ export default class Bevitel extends Component {
       </View>
       
       </View>
-      </ScrollView>
-      </SafeAreaView>
       
     );
   }

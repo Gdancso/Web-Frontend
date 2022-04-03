@@ -25,7 +25,7 @@ export default class Bevitel extends Component {
       }, function(){
   
       });
-      alert(JSON.stringify(this.state.dataSource))
+      //alert(JSON.stringify(this.state.dataSource))
       //split
   
     })
@@ -36,7 +36,7 @@ export default class Bevitel extends Component {
   
    }
     Torles=(id)=>{
-        alert("hello")
+        //alert("hello")
         var bemenet={
           bevitel1:id
          
@@ -51,7 +51,7 @@ export default class Bevitel extends Component {
       )
       .then(x => x.text())
       .then(y => {
-        alert(y)
+        //alert(y)
         this.frissit()
       });
         
@@ -65,17 +65,15 @@ export default class Bevitel extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
       <View style={{alignItems:'center'}}>
 
-      <View style={{width:350,padding: 10,backgroundColor:"grey",alignItems:"center",borderRadius:20,marginLeft:20,marginRight:20}}>
+      <View style={{padding: 10,marginVertical:15,backgroundColor:"#484a4d",alignItems:"center",alignSelf:"center",width:500,borderRadius:20,marginLeft:20,marginRight:20}}>
          <Text style={{padding: 10, fontSize: 20,color:"white"}}>
          Törlés uzenet kulcsszo:
         </Text>
         <TextInput
-        placeholderTextColor="#b3b3ff"
-          style={{height: 40,color:"white"}}
+         placeholderTextColor="#b3b3ff"
+         style={{height: 40,color:"white",backgroundColor:"#585959",padding:10,borderRadius:10,height:40,textAlignVertical:"top"}}
           placeholder="Add meg a Kulcsszót!"
           onChangeText={(ertekeles_uzenet) => this.setState({ertekeles_uzenet})}
           value={this.state.ertekeles_uzenet}
@@ -94,10 +92,9 @@ export default class Bevitel extends Component {
 
           data={this.state.dataSource}
           renderItem={({item}) => 
-          <View style={{borderWidth:1,borderRadius:10,padding:10,width:300,marginLeft:13,paddingLeft:15,backgroundColor:"lightblue"}}>
+          <View style={{borderWidth:1,marginVertical:5,borderRadius:10,padding:10,width:500,alignSelf:'center',backgroundColor:"#677180"}}>
             <Text style={{fontSize:20,padding:3,color:"white"}}>{item.ertekeles_uzenet} </Text>
-            <Text style={{fontStyle:"italic",fontSize:15,padding:3}}>{item.ertekeles_nev} </Text>
-            <Text style={{fontStyle:"italic",fontSize:15,padding:3}}>{item.ertekeles_id} </Text>
+            <Text style={{fontStyle:"italic",fontSize:15,padding:3,color:"white"}}>{item.ertekeles_nev} </Text>
             <Button onPress={() => this.Torles(item.ertekeles_id)} title="Törlés" />
             <Text style={{fontSize:12}}>{item.ertekeles_date.split ("T")[0].trim()} </Text>
           </View>
@@ -107,8 +104,6 @@ export default class Bevitel extends Component {
         />
       </View>
       </View>
-      </ScrollView>
-      </SafeAreaView>
       
     );
   }

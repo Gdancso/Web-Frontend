@@ -28,7 +28,7 @@ export default class Bevitel extends Component {
       }, function(){
 
     });
-    alert(JSON.stringify(this.state.dataSource))
+    //alert(JSON.stringify(this.state.dataSource))
     //split
 
   })
@@ -40,7 +40,7 @@ export default class Bevitel extends Component {
  }
 
   felvitel=async ()=>{
-    alert("Megnyomva")
+    //alert("Megnyomva")
     let bemenet={
       bevitel1: this.state.ertekeles_nev,
       bevitel2: this.state.ertekeles_uzenet,
@@ -54,7 +54,7 @@ export default class Bevitel extends Component {
       .then((response) => response.text())
       .then((szoveg) => {
 
-        alert(szoveg)
+        //alert(szoveg)
         this.frissit()
       })
       .catch((error) =>{
@@ -76,6 +76,7 @@ export default class Bevitel extends Component {
          <Text style={{padding: 10, fontSize: 20,color:"white"}}>
          Név:
         </Text>
+        
         <TextInput
           placeholderTextColor="#b3b3ff"
           style={{height: 40,color:"white",backgroundColor:"#585959",padding:10,borderRadius:10,height:40,textAlignVertical:"top"}}
@@ -83,6 +84,7 @@ export default class Bevitel extends Component {
           onChangeText={(ertekeles_nev) => this.setState({ertekeles_nev})}
           value={this.state.ertekeles_nev}
           //value={currentUser.username}
+          
         />
          <Text style={{padding: 10, fontSize: 20,color:"white"}}>
          Komment:

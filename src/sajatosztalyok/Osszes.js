@@ -15,7 +15,7 @@ export default class FetchExample extends React.Component {
   }
 
   rendezes_nev=()=>{
-    alert("hello")
+    //alert("hello")
     return fetch(IP.ipcim+'/rend_nev')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -26,7 +26,7 @@ export default class FetchExample extends React.Component {
       }, function(){
 
       });
-      alert(JSON.stringify(this.state.dataSource))
+      //alert(JSON.stringify(this.state.dataSource))
       //split
 
     })
@@ -36,7 +36,7 @@ export default class FetchExample extends React.Component {
   }
 
   rendezes_p=()=>{
-    alert("hello")
+    //alert("hello")
     return fetch(IP.ipcim+'/rend_osszes_pontszam')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -47,7 +47,7 @@ export default class FetchExample extends React.Component {
       }, function(){
 
       });
-      alert(JSON.stringify(this.state.dataSource))
+      //alert(JSON.stringify(this.state.dataSource))
       //split
 
     })
@@ -57,7 +57,7 @@ export default class FetchExample extends React.Component {
   }
 
   rendezes_palya=()=>{
-    alert("hello")
+    //alert("hello")
     return fetch(IP.ipcim+'/rend_elert')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -68,7 +68,7 @@ export default class FetchExample extends React.Component {
       }, function(){
 
       });
-      alert(JSON.stringify(this.state.dataSource))
+      //alert(JSON.stringify(this.state.dataSource))
       //split
 
     })
@@ -109,7 +109,7 @@ export default class FetchExample extends React.Component {
         }, function(){
 
         });
-        alert(JSON.stringify(this.state.dataSource))
+        //alert(JSON.stringify(this.state.dataSource))
       })
       .catch((error) =>{
         console.error(error);
